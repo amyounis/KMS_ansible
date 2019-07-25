@@ -44,4 +44,4 @@ else
 fi
 
 echo "########## running ansible playboock ##########"
-
+ansible-playbook site.yml -i hosts

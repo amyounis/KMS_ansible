@@ -1,2 +1,5 @@
 ---
-# tasks file for prepare
+
+- name: Display all variables/facts known for a host
+  debug:
+   msg: got to fish
