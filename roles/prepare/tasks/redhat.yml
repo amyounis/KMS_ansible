@@ -13,10 +13,14 @@
 - name: Install Docker packages
   yum:
     name: 
-     - docker-ce
-     - docker-ce-cli
-     - containerd.io
+     - docker-engine
     state: present
+
+- name: Start service httpd, if not started
+  service:
+    name: docker
+    state: started
+    enabled: yes
 
 - name: Install Docker-compose
   get_url:
