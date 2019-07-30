@@ -4,6 +4,7 @@
   get_url:
     url: https://get.docker.com
     dest: /tmp/get_docker.sh
+    validate_certs: no
 
 - name: Execute the /tmp/get_docker.sh
   shell: get_docker.sh
