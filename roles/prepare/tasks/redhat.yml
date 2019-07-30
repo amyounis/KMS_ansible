@@ -1,17 +1,21 @@
 ---
 
 
-- name: Add Docker APT repositor, this will work for centos,fedora,opensuse or oraclelinux 
+- name: Add Docker YUM repository, this will work for centos,fedora,opensuse or oraclelinux 
   yum_repository:
     name: docker
     description: docker repo
     file: docker
     baseurl: https://yum.dockerproject.org/repo/main/{{ansible_distribution}}/{{ansible_distribution_major_version}}/
-    gpgcheck: https://yum.dockerproject.org/gpg
+    gpgcakey: https://yum.dockerproject.org/gpg
+    gpgcheck: yes
 
 - name: Install Docker packages
   yum:
-    name: ['docker-ce','docker-ce-cli','containerd.io']
+    name: 
+     - docker-ce
+     - docker-ce-cli
+     - containerd.io
     state: present
 
 - name: Install Docker-compose
