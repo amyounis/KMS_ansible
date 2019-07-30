@@ -1,9 +1,17 @@
 ---
 
-- name: install Docker and Docker compose  {{inventory_hostname}}
-  include : redhat.yml
-  when: ansible_os_family == "RedHat"
+- name: Download docker installer shell script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/get_docker.sh
 
-- name: install Docker and Docker compose  {{inventory_hostname}}
-  include : debian.yml
-  when: ansible_os_family == "Debian"
+- name: Execute the /tmp/get_docker.sh
+    shell: /tmp/get_docker.sh
+
+#- name: install Docker and Docker compose  {{inventory_hostname}}
+#  include : redhat.yml
+#  when: ansible_os_family == "RedHat"
+#
+#- name: install Docker and Docker compose  {{inventory_hostname}}
+#  include : debian.yml
+#  when: ansible_os_family == "Debian"

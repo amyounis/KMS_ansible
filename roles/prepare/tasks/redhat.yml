@@ -1,18 +1,15 @@
 ---
 
-- debug:
-    mesg: {{ansible_distribution|lower}} {{ansible_distribution_release}}
 
-- name: Add Docker APT repository
-  yum_repository:
-    name: docker
-    description: docker repo
-    file: docker
-    baseurl: https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}}
-    gpgcheck: https://download.docker.com/linux/centos/gpg
+- name: Download docker installer shell script
+  get_url: 
+    url: https://get.docker.com  
+    dest: /tmp/get_docker.sh
 
-#- name: Install Docker packages
-#  yum:
+- name: Execute the /tmp/get_docker.sh
+    shell: /tmp/get_docker.sh
+
+
 #    name: ['docker-ce','docker-ce-cli','containerd.io']
 #    state: present
 #
