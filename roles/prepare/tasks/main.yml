@@ -1,5 +1,9 @@
 ---
 
-- name: Display all variables/facts known for a host
-  debug:
-   msg: got to fish
+- name: install Docker and Docker compose  {{inventory_hostname}}
+  include : redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: install Docker and Docker compose  {{inventory_hostname}}
+  include : debian.yml
+  when: ansible_os_family == "Debian"

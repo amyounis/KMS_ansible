@@ -62,11 +62,11 @@ else
 fi
 
 print "Clone KMS_install Repo"
-if [ ! -d KMS_install ] 
+if [ ! -d /tmp/KMS_install ] 
 then
-  git clone https://github.com/amyounis/KMS_install.git && cd KMS_install && echo -e "${GREEN}OK${NC}"
+  git clone --single-branch --branch $branchname https://github.com/amyounis/KMS_install.git /tmp/KMS_install && cd /tmp/KMS_install && echo -e "${GREEN}OK${NC}"
 else
-  cd KMS_install && echo -e "${GREEN}OK${NC}"
+  cd /tmp/KMS_install && echo -e "${GREEN}OK${NC}"
 fi
 
 print "Running Ansible Playbook"
