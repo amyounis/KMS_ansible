@@ -6,7 +6,9 @@
     dest: /tmp/get_docker.sh
 
 - name: Execute the /tmp/get_docker.sh
-    shell: /tmp/get_docker.sh
+  shell: get_docker.sh
+  args:
+    chdir: /tmp
 
 #- name: install Docker and Docker compose  {{inventory_hostname}}
 #  include : redhat.yml

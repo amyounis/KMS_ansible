@@ -19,10 +19,12 @@ do
     case $opt in
         "docker")
             branchname="docker"
+            break
             ;;
         "bare")
             branchname="master"
-	    ;;
+	    break
+            ;;
         "Quit")
             exit 1
             ;;
