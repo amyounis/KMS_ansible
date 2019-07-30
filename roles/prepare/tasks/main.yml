@@ -1,24 +1,9 @@
 ---
 
-- name: curl -fsSL https://get.docker.com
-  raw: curl -fsSL https://get.docker.com | sh 
+- name: install Docker and Docker compose  {{inventory_hostname}}
+  include : redhat.yml
+  when: ansible_os_family == "RedHat"
 
-
-#- name: Download docker installer shell script
-#  get_url:
-#    url: https://get.docker.com
-#    dest: /tmp/get_docker.sh
-#    validate_certs: no
-#
-#- name: Execute the /tmp/get_docker.sh
-#  shell: get_docker.sh
-#  args:
-#    chdir: /tmp
-#
-#- name: install Docker and Docker compose  {{inventory_hostname}}
-#  include : redhat.yml
-#  when: ansible_os_family == "RedHat"
-#
-#- name: install Docker and Docker compose  {{inventory_hostname}}
-#  include : debian.yml
-#  when: ansible_os_family == "Debian"
+- name: install Docker and Docker compose  {{inventory_hostname}}
+  include : debian.yml
+  when: ansible_os_family == "Debian"

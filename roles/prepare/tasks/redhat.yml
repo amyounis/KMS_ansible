@@ -1,20 +1,21 @@
 ---
 
 
-- name: Download docker installer shell script
-  get_url: 
-    url: https://get.docker.com  
-    dest: /tmp/get_docker.sh
+- name: Add Docker APT repositor, this will work for centos,fedora,opensuse or oraclelinux 
+  yum_repository:
+    name: docker
+    description: docker repo
+    file: docker
+    baseurl: https://yum.dockerproject.org/repo/main/{{ansible_distribution}}/{{ansible_distribution_major_version}}/
+    gpgcheck: https://yum.dockerproject.org/gpg
 
-- name: Execute the /tmp/get_docker.sh
-    shell: /tmp/get_docker.sh
+- name: Install Docker packages
+  yum:
+    name: ['docker-ce','docker-ce-cli','containerd.io']
+    state: present
 
-
-#    name: ['docker-ce','docker-ce-cli','containerd.io']
-#    state: present
-#
-#- name: Install Docker-compose
-#  get_url:
-#    url: "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-{{ansible_system}}-{{ansible_architecture}}"
-#    dest: /usr/local/bin/docker-compose
+- name: Install Docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-{{ansible_system}}-{{ansible_architecture}}"
+    dest: /usr/local/bin/docker-compose
 #
